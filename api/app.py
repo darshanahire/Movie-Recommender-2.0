@@ -8,14 +8,16 @@ import requests
 app = Flask(__name__, static_folder='../movie-recommendation-system/build', static_url_path='/')
 CORS(app)
 
-newMovies = pd.read_pickle('movies.pkl')
-similarity1 = pd.read_pickle('similarity1.pkl')
-similarity2 = pd.read_pickle('similarity2.pkl')
+# newMovies = pd.read_pickle('movies.pkl')
+# similarity1 = pd.read_pickle('similarity1.pkl')
+# similarity2 = pd.read_pickle('similarity2.pkl')
 
-# with open("similarity.pkl", 'rb') as k:
-#     similarity=pd.read_pickle(k)
-# with open("movies.pkl", 'rb') as f:
-#     newMovies=pd.read_pickle(f)
+with open("movies.pkl", 'rb') as k:
+    newMovies=pd.read_pickle(k)
+with open("similarity1.pkl", 'rb') as k:
+    similarity1=pd.read_pickle(k)
+with open("similarity2.pkl", 'rb') as k:
+    similarity2=pd.read_pickle(k)
 
 def getMovieDetaile(movieId):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=2144c30ff91ce4ad919d206c68ffe29c'.format(movieId))
